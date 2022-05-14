@@ -23,6 +23,6 @@ func EnsurePrefix(s string, prefix string) string {
 	}
 }
 
-func UrlRewrite(source string, cutPrefix string, targetFormat string) string {
+func PathRewrite(source string, cutPrefix string, targetFormat string) string {
 	return fmt.Sprintf(targetFormat, EnsurePrefix(CutPrefix(source, cutPrefix), "/"))
 }

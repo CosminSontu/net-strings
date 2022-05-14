@@ -30,7 +30,7 @@ func TestUrlRewrite(t *testing.T) {
 	cutPrefix := "/a/"
 	targetPath := "/invoke/target/v1.0%s"
 	expected := "/invoke/target/v1.0/b/c"
-	result := UrlRewrite(sourcePath, cutPrefix, targetPath)
+	result := PathRewrite(sourcePath, cutPrefix, targetPath)
 
 	if expected != result {
 		t.Errorf("Expected %s, got %s", expected, result)
