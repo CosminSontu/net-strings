@@ -15,14 +15,20 @@ func CutPrefix(s string, prefix string) string {
 	return s
 }
 
-func EnsurePrefix(s string, prefix string) string {
-	if (strings.Index(s, prefix)) == 0 {
+func EnsurePathPrefix(s string) string {
+	if len(s) == 0 {
 		return s
-	} else {
-		return fmt.Sprintf("%s%s", prefix, s)
 	}
+
+	r0 := []rune(s)[0]
+
+	if r0 == '/' || r0 == '?' {
+		return s
+	}
+
+	return fmt.Sprintf("/%s", s)
 }
 
 func PathRewrite(source string, cutPrefix string, targetFormat string) string {
-	return fmt.Sprintf(targetFormat, EnsurePrefix(CutPrefix(source, cutPrefix), "/"))
+	return fmt.Sprintf(targetFormat, EnsurePathPrefix(CutPrefix(source, cutPrefix)))
 }
