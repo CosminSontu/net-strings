@@ -62,3 +62,19 @@ func BenchmarkSlice(b *testing.B) {
 		CutPrefix(path, prefix)
 	}
 }
+
+func BenchmarkEnsurePathPrefixOld(b *testing.B) {
+	var inputs = []string{"abc", "", "/abc", "?abc"}
+
+	for i := 0; i < b.N; i++ {
+		ensurePathPrefixOld(inputs[i%4])
+	}
+}
+
+func BenchmarkEnsurePathPrefixCurrent(b *testing.B) {
+	var inputs = []string{"abc", "", "/abc", "?abc"}
+
+	for i := 0; i < b.N; i++ {
+		EnsurePathPrefix(inputs[i%4])
+	}
+}
